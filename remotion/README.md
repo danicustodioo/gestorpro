@@ -68,3 +68,23 @@ npx remotion render CaptionedReel out/reel-preview.mp4 --frames=0-480
 
 The composition duration (`durationInFrames` in `src/Root.tsx`) is set for the
 ~161s clip at 30fps; adjust it if your clip length changes.
+
+## Footage editor (`scripts/edit-reel.mjs`)
+
+A standalone ffmpeg pipeline that tightens a raw talking-head clip:
+
+- detects silent gaps and **removes the pauses** between sentences (keeping a
+  small margin so words aren't clipped),
+- **crossfades every cut** so the jump-cuts look fluid,
+- a **light + quality pass**: denoise → upscale to 1080×1920 → color/exposure
+  correction → sharpening.
+
+```bash
+npm run edit-reel
+# or with explicit paths:
+node scripts/edit-reel.mjs public/reel.mp4 out/reel-edited.mp4
+```
+
+Tune the behaviour (silence threshold, padding, crossfade length, color) via the
+`CONFIG` block at the top of the script. It uses the bundled `ffmpeg-static`
+binary, so no system ffmpeg is required.
