@@ -1,0 +1,21 @@
+{
+  "name": "gestorpro-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion video compositions for GestorPro (Record & Veritas).",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render RecordIntro out/record-intro.mp4",
+    "still": "remotion still RecordIntro out/frame.png --frame=75"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.473",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.473"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "typescript": "^5.6.3"
+  }
+}
